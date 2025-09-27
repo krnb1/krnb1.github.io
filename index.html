@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дигитални Компетенции България</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary-color: #8b5cf6;
+            --secondary-light: #a78bfa;
+            --accent-color: #06b6d4;
+            --accent-light: #67e8f9;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-900: #0f172a;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: clamp(3rem, 6vw, 5rem) 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+
+        header h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            margin: 0;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-weight: 400;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        /* Card Styles */
+        .course-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .course-card h2 {
+            margin-top: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 600;
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-card p {
+            margin: 1rem 0;
+            color: var(--gray-600);
+            font-size: 1rem;
+        }
+
+        .course-card strong {
+            color: var(--gray-900);
+            font-weight: 600;
+        }
+
+        /* Wide Card */
+        .wide-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+
+        .course-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .course-card ul li {
+            margin: 1.2rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .course-card ul li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            font-size: 1.3em;
+            top: -2px;
+        }
+
+        /* Button Styles */
+        .modalBtn, .course-card a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            text-decoration: none;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .modalBtn:hover, .course-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+            background: linear-gradient(135deg, var(--primary-dark), var(--accent-color));
+        }
+
+        /* Tabs */
+        .tabs {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-buttons button {
+            flex: 1;
+            min-width: 180px;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .tab-buttons button.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .tab-buttons button:hover:not(.active) {
+            border-color: var(--primary-light);
+            background: var(--gray-50);
+            transform: translateY(-1px);
+        }
+
+        .tab-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .tab-content h3 {
+            color: var(--gray-900);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tab-content p {
+            margin: 1.2rem 0;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .tab-content ul {
+            color: var(--gray-600);
+            padding-left: 1.5rem;
+        }
+
+        .tab-content ul li {
+            margin: 0.8rem 0;
+            line-height: 1.6;
+        }
+
+        .tab-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .tab-content a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--white);
+            text-align: center;
+            border-radius: 20px;
+            max-width: 1170px;
+            margin: 4rem auto;
+            padding: 4rem 2rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-section h2 {
+            margin-bottom: 2rem;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 600;
+        }
+
+        .contact-section p {
+            margin: 1rem 0;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+            background: var(--white);
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-bottom: none;
+            border-radius: 20px 20px 0 0;
+            padding: 1.5rem 2rem;
+        }
+
+        .modal-body {
+            background: var(--white);
+            color: var(--gray-900);
+            padding: 2rem;
+        }
+
+        .table {
+            color: var(--gray-900);
+            border-color: var(--gray-200);
+        }
+
+        .table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border-color: var(--gray-200);
+            font-weight: 500;
+            padding: 1rem;
+        }
+
+        .table td {
+            background: var(--white);
+            border-color: var(--gray-200);
+            padding: 1rem;
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) > td {
+            background: var(--gray-50);
+        }
+
+        .table a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .table a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .fa-file-archive {
+            color: var(--warning-color);
+            margin-right: 0.75rem;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+                margin: 2rem auto;
+                gap: 1.5rem;
+            }
+
+            .course-card {
+                padding: 2rem;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .tab-buttons button {
+                width: 100%;
+                max-width: 320px;
+                min-width: unset;
+            }
+
+            .tab-content {
+                padding: 2rem;
+            }
+
+            .contact-section {
+                padding: 3rem 1.5rem;
+                margin: 3rem auto;
+            }
+
+            .modal-dialog {
+                margin: 1rem;
+            }
+
+            .table-responsive {
+                font-size: 0.9rem;
+            }
+
+            header {
+                padding: 2.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-card {
+                padding: 1.5rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem;
+            }
+
+            .contact-section {
+                padding: 2rem 1rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .course-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .course-card:nth-child(2) { animation-delay: 0.1s; }
+        .course-card:nth-child(3) { animation-delay: 0.2s; }
+        .course-card:nth-child(4) { animation-delay: 0.3s; }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus Styles for Accessibility */
+        button:focus, .modalBtn:focus, a:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>МЕД ДИГИТАЛ ЕООД - Доставчик на обучение</h1>
+        <p>Актуална информация за безплатни обучения чрез ваучери за възрастни според <br>Европейската рамка за дигитална компетентност (DigComp 2.1)</p>
+    </header>
+
+    <main>
+        <div class="course-card">
+            <h2>Дигитална компетентност - Базово ниво</h2>
+            <p><strong>Вид:</strong> Дистанционно</p>
+            <p><strong>Място:</strong> Онлайн</p>
+            <p><strong>Форма:</strong> електронна платформа - синхронно обучение</p>
+            <p><strong>Период:</strong> Очакван период 29.09.2025 - 08.10.2025</p>
+            <button type="button" class="btn modalBtn" data-bs-toggle="modal" data-bs-target="#materialsModal">
+            Виж материалите
+            </button>
+        </div>
+
+        <div class="course-card">
+            <h2>Дигитална компетентност - Средно ниво</h2>
+            <p><strong>Вид:</strong> Дистанционно</p>
+            <p><strong>Място:</strong> Онлайн</p>
+            <p><strong>Форма:</strong> електронна платформа - синхронно обучение</p>
+            <p><strong>Период:</strong> Ще се уточни при събиране на група.</p>
+            <button type="button" class="btn modalBtn" data-bs-toggle="modal" data-bs-target="#materialsModal2">
+            Виж материалите
+            </button>
+        </div>
+
+        <div class="course-card">
+            <h2>Дигитална компетентност - Напреднало ниво</h2>
+            <p><strong>Вид:</strong> Дистанционно</p>
+            <p><strong>Място:</strong> Онлайн</p>
+            <p><strong>Форма:</strong> електронна платформа - синхронно обучение</p>
+            <p><strong>Период:</strong> Ще се уточни при събиране на група.</p>
+            <button type="button" class="btn modalBtn" data-bs-toggle="modal" data-bs-target="#materialsModal3">
+            Виж материалите
+            </button>
+        </div>
+
+        <div class="course-card">
+            <h2>Дигитална компетентност - Специализирано ниво</h2>
+            <p><strong>Вид:</strong> Дистанционно</p>
+            <p><strong>Място:</strong> Онлайн</p>
+            <p><strong>Форма:</strong> електронна платформа - синхронно обучение</p>
+            <p><strong>Период:</strong> Ще се уточни при събиране на група.</p>
+            <p><a href="https://nc.chrdri.net/s/7gamRp7JXTZd6iG" target="_blank">Виж материалите</a></p>
+        </div>
+
+  <div class="course-card wide-card">
+    <h2>Защо да се запиша?</h2>
+    <ul>
+      <li><strong>Напълно безплатно:</strong> Курсът е финансиран по Европейската програма DigComp и е напълно безплатен за Вас!</li>
+      <li><strong>Високо качество:</strong> Курсът Ви дава висококачествено образование по дигитална компетентност и умения, които са нужни навсякъде в модерния свят.</li>
+      <li><strong>Висококвалифициран преподавател:</strong> Курсът се води от програмист с практически опит, работил за една от най-големите банки в света.</li>
+    </ul>
+
+
+    <h2>Как да се запиша?</h2>
+    <p><strong>Запишете се за 5 минути:</strong> <a href="https://serviceseprocess.az.government.bg/service/service/5aedf067-45f5-4a56-9fe7-ca42f9084cc8" target="_blank">Записване</a></p>
+    <p><strong>Важно:</strong> При записването, изберете ПИМ-СЗ-ООД от списъка за доставчици на обучение.</p>
+  </div>
+    </main>
+
+    <!-- Tabs Section -->
+    <section class="tabs">
+        <div class="tab-buttons">
+            <button class="active" data-tab="tab1">Базово ниво (1-2)</button>
+            <button data-tab="tab2">Средно ниво (3-4)</button>
+            <button data-tab="tab3">Напреднало ниво (5-6)</button>
+            <button data-tab="tab4">Специализирано ниво (7-8)</button>
+        </div>
+        <div class="tab-content" id="tab1">
+            <h3>Програма за базови дигитални компетентности</h3>
+            <p>Целта на програмата е да осигури базови знания и умения за работа с дигитални технологии и да развие основни дигитални компетентности, приложими в различни области.</p>
+            <p><strong>Модули:</strong></p>
+            <ul>
+                <li>Грамотност с информация и данни – търсене, управление и оценка на дигитално съдържание.</li>
+                <li>Комуникация и сътрудничество – взаимодействие онлайн, споделяне и управление на дигитална идентичност.</li>
+                <li>Създаване на дигитално съдържание – разработване, интегриране, авторско право и лицензи.</li>
+                <li>Безопасност – защита на устройства, лични данни и здраве при използване на технологии.</li>
+                <li>Решаване на проблеми – техническа помощ и идентифициране на нуждите за дигитални решения.</li>
+                <li>Допълнителен модул за публични дигитални услуги – работа с електронни услуги на НАП, НОИ и други.</li>
+            </ul>
+            <p><strong>Пълната програма:</strong> <a href="https://drive.google.com/file/d/1IYj5Wwf-3351_ZOv6OG4qK9TloOisYMF/view?usp=sharing" target="_blank">Учебен план</a></p>
+            <p><strong>Продължителност:</strong> 55 учебни часа (45 часа общи умения + 10 часа за публични дигитални услуги).</p>
+            <p><strong>Форма:</strong> Онлайн с лектор + материали за самостоятелно ползване.</p>
+            <p><strong>Групи:</strong> До 20 участника.</p>
+            <p><strong>Финален изпит:</strong> Онлайн изпит от Единния сертификационен център. Сертификат при успешно полагане на изпита.</p>
+        </div>
+        <div class="tab-content" id="tab2" style="display:none;">
+            <h3>Програма за средни дигитални компетентности</h3>
+            <p>Целта на програмата е да надгради върху базовите знания и умения за работа с дигитални технологии и да предостави средни дигитални компетентности, приложими в различни области.</p>
+            <p><strong>Модули:</strong></p>
+            <ul>
+                <li>Грамотност с информация и данни – търсене, управление и оценка на дигитално съдържание.</li>
+                <li>Комуникация и сътрудничество – взаимодействие онлайн, споделяне и управление на дигитална идентичност.</li>
+                <li>Създаване на дигитално съдържание – разработване, интегриране, авторско право и лицензи.</li>
+                <li>Безопасност – защита на устройства, лични данни и здраве при използване на технологии.</li>
+                <li>Решаване на проблеми – техническа помощ и идентифициране на нуждите за дигитални решения.</li>
+            </ul>
+            <p><strong>Пълната програма:</strong> <a href="https://drive.google.com/file/d/163S_s8FcJ5k1keLSJWJum6E_qM9ls8dy/view?usp=sharing" target="_blank">Учебен план</a></p>
+            <p><strong>Продължителност:</strong> 45 учебни часа.</p>
+            <p><strong>Форма:</strong> Онлайн с лектор + материали за самостоятелно ползване.</p>
+            <p><strong>Групи:</strong> До 20 участника.</p>
+            <p><strong>Финален изпит:</strong> Онлайн изпит от Единния сертификационен център. Сертификат при успешно полагане на изпита.</p>
+        </div>
+        <div class="tab-content" id="tab3" style="display:none;">
+            <h3>Програма за напреднали дигитални компетентности</h3>
+            <p>Целта на програмата е да надгради върху средните знания и умения за работа с дигитални технологии и да предостави напреднали дигитални компетентности, приложими в различни области.</p>
+            <p><strong>Модули:</strong></p>
+            <ul>
+                <li>Грамотност с информация и данни – търсене, управление и оценка на дигитално съдържание.</li>
+                <li>Комуникация и сътрудничество – взаимодействие онлайн, споделяне и управление на дигитална идентичност.</li>
+                <li>Създаване на дигитално съдържание – разработване, интегриране, авторско право и лицензи.</li>
+                <li>Безопасност – защита на устройства, лични данни и здраве при използване на технологии.</li>
+                <li>Решаване на проблеми – техническа помощ и идентифициране на нуждите за дигитални решения.</li>
+            </ul>
+            <p><strong>Пълната програма:</strong> <a href="https://drive.google.com/file/d/1IdxcUJAAjiNaXL-X_Ye0Qn2VRaBLUh3h/view?usp=sharing" target="_blank">Учебен план</a></p>
+            <p><strong>Продължителност:</strong> 45 учебни часа.</p>
+            <p><strong>Форма:</strong> Онлайн с лектор + материали за самостоятелно ползване.</p>
+            <p><strong>Групи:</strong> До 20 участника.</p>
+            <p><strong>Финален изпит:</strong> Онлайн изпит от Единния сертификационен център. Сертификат при успешно полагане на изпита.</p>
+        </div>
+        <div class="tab-content" id="tab4" style="display:none;">
+            <h3>Програма за специализирани дигитални компетентности</h3>
+            <p>Целта на програмата е да надгради върху напредналите знания и умения за работа с дигитални технологии и да предостави специализирани дигитални компетентности, приложими в различни области.</p>
+            <p><strong>Модули:</strong></p>
+            <ul>
+                <li>Грамотност с информация и данни – търсене, управление и оценка на дигитално съдържание.</li>
+                <li>Комуникация и сътрудничество – взаимодействие онлайн, споделяне и управление на дигитална идентичност.</li>
+                <li>Създаване на дигитално съдържание – разработване, интегриране, авторско право и лицензи.</li>
+                <li>Безопасност – защита на устройства, лични данни и здраве при използване на технологии.</li>
+                <li>Решаване на проблеми – техническа помощ и идентифициране на нуждите за дигитални решения.</li>
+            </ul>
+            <p><strong>Пълната програма:</strong> <a href="https://drive.google.com/file/d/1hLyhSqxLMkY8jWjPt7gAQSix4w66p9R7/view?usp=sharing" target="_blank">Учебен план</a></p>
+            <p><strong>Продължителност:</strong> 45 учебни часа.</p>
+            <p><strong>Форма:</strong> Онлайн с лектор + материали за самостоятелно ползване.</p>
+            <p><strong>Групи:</strong> До 20 участника.</p>
+            <p><strong>Финален изпит:</strong> Онлайн изпит от Единния сертификационен център. Сертификат при успешно полагане на изпита.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Контакти</h2>
+            <p><strong>Email: </strong>nova.digitalmed2025@gmail.com</p>
+            <p><strong>Ръководител: </strong>Стефка Ангелова</p>
+            <p><strong>Тел: </strong>0889105487</p>
+            <p><strong>Преподавател: </strong>Димитър Тодоров</p>
+            <p><strong>Тел: </strong>0885807940</p>
+        </div>
+    </section>
+
+
+    <footer>
+        &copy; 2025 МЕД ДИГИТАЛ ЕООД. Всички права запазени.
+    </footer>
+
+
+<div class="modal" id="materialsModal" tabindex="-1" aria-labelledby="materialsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="materialsModalLabel">Учебни материали</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-success">
+                <tr>
+                    <th>Прикачен файл</th>
+                    <th>Размер</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema1.1.zip" target="_blank">
+                            Модул 1 - Тема 1.1
+                        </a>
+                    </td>
+                    <td>5.88 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema1.2.zip" target="_blank">
+                            Модул 1 - Тема 1.2
+                        </a>
+                    </td>
+                    <td>1.01 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema1.3.zip" target="_blank">
+                            Модул 1 - Тема 1.3
+                        </a>
+                    </td>
+                    <td>7.63 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema2.1.zip" target="_blank">
+                            Модул 2 - Тема 2.1
+                        </a>
+                    </td>
+                    <td>7.64 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema2.2.zip" target="_blank">
+                            Модул 2 - Тема 2.2
+                        </a>
+                    </td>
+                    <td>9.96 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema2.3.zip" target="_blank">
+                            Модул 2 - Тема 2.3
+                        </a>
+                    </td>
+                    <td>14.87 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema2.4.zip" target="_blank">
+                            Модул 2 - Тема 2.4
+                        </a>
+                    </td>
+                    <td>4.81 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema2.5.zip" target="_blank">
+                            Модул 2 - Тема 2.5
+                        </a>
+                    </td>
+                    <td>3.98 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema2.6.zip" target="_blank">
+                            Модул 2 - Тема 2.6
+                        </a>
+                    </td>
+                    <td>6.65 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema3.1.zip" target="_blank">
+                            Модул 3 - Тема 3.1
+                        </a>
+                    </td>
+                    <td>3.07 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema3.2.zip" target="_blank">
+                            Модул 3 - Тема 3.2
+                        </a>
+                    </td>
+                    <td>19.65 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema3.3.zip" target="_blank">
+                            Модул 3 - Тема 3.3
+                        </a>
+                    </td>
+                    <td>700.4 KB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema3.4.zip" target="_blank">
+                            Модул 3 - Тема 3.4
+                        </a>
+                    </td>
+                    <td>1.37 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema4.1.zip" target="_blank">
+                            Модул 4 - Тема 4.1
+                        </a>
+                    </td>
+                    <td>2.63 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema4.2.zip" target="_blank">
+                            Модул 4 - Тема 4.2
+                        </a>
+                    </td>
+                    <td>2.87 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema4.3.zip" target="_blank">
+                            Модул 4 - Тема 4.3
+                        </a>
+                    </td>
+                    <td>1.53 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema4.4.zip" target="_blank">
+                            Модул 4 - Тема 4.4
+                        </a>
+                    </td>
+                    <td>3.72 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema5.1.zip" target="_blank">
+                            Модул 5 - Тема 5.1
+                        </a>
+                    </td>
+                    <td>9.08 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema5.2.zip" target="_blank">
+                            Модул 5 - Тема 5.2
+                        </a>
+                    </td>
+                    <td>10.91 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema5.3.zip" target="_blank">
+                            Модул 5 - Тема 5.3
+                        </a>
+                    </td>
+                    <td>2.52 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2tema5.4.zip" target="_blank">
+                            Модул 5 - Тема 5.4
+                        </a>
+                    </td>
+                    <td>5.34 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2dopulnitelenmodultema6.1.zip" target="_blank">
+                            Модул 6 - Тема 6.1 - допълнителни
+                        </a>
+                    </td>
+                    <td>4.21 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2dopulnitelenmodultema6.2.zip" target="_blank">
+                            Модул 6 - Тема 6.2 - допълнителни
+                        </a>
+                    </td>
+                    <td>5.87 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2dopulnitelenmodultema6.3.zip" target="_blank">
+                            Модул 6 - Тема 6.3 - допълнителни
+                        </a>
+                    </td>
+                    <td>3.03 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2dopulnitelenmodultema6.4.zip" target="_blank">
+                            Модул 6 - Тема 6.4 - допълнителни
+                        </a>
+                    </td>
+                    <td>2.04 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2dopulnitelenmodultema6.5.zip" target="_blank">
+                            Модул 6 - Тема 6.5 - допълнителни
+                        </a>
+                    </td>
+                    <td>3.09 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva1-2dopulnitelenmodultema6.6.zip" target="_blank">
+                            Модул 6 - Тема 6.6 - допълнителни
+                        </a>
+                    </td>
+                    <td>1.77 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/obnovenimateriali.zip" target="_blank">
+                            Обновени - Тема 2, 4 и 6
+                        </a>
+                    </td>
+                    <td>11.55 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/opisanienamaterilitezabazovonivo1-2.zip" target="_blank">
+                            Описание на материлите за базово ниво (1-2)
+                        </a>
+                    </td>
+                    <td>613.91 KB</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="materialsModal2" tabindex="-1" aria-labelledby="materialsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="materialsModalLabel">Учебни материали</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-success">
+                <tr>
+                    <th>Прикачен файл</th>
+                    <th>Размер</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema1.1.zip" target="_blank">
+                            Модул 1 - Тема 1.1
+                        </a>
+                    </td>
+                    <td>3.22 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema1.2.zip" target="_blank">
+                            Модул 1 - Тема 1.2
+                        </a>
+                    </td>
+                    <td>3.31 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema1.3.zip" target="_blank">
+                            Модул 1 - Тема 1.3
+                        </a>
+                    </td>
+                    <td>3.21 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema2.1.zip" target="_blank">
+                            Модул 2 - Тема 2.1
+                        </a>
+                    </td>
+                    <td>3.52 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema2.2.zip" target="_blank">
+                            Модул 2 - Тема 2.2
+                        </a>
+                    </td>
+                    <td>3.33 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema2.3.zip" target="_blank">
+                            Модул 2 - Тема 2.3
+                        </a>
+                    </td>
+                    <td>3.73 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema2.4.zip" target="_blank">
+                            Модул 2 - Тема 2.4
+                        </a>
+                    </td>
+                    <td>3.37 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema2.5.zip" target="_blank">
+                            Модул 2 - Тема 2.5
+                        </a>
+                    </td>
+                    <td>3.03 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema2.6.zip" target="_blank">
+                            Модул 2 - Тема 2.6
+                        </a>
+                    </td>
+                    <td>2.41 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema3.1.zip" target="_blank">
+                            Модул 3 - Тема 3.1
+                        </a>
+                    </td>
+                    <td>4.22 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema3.2.zip" target="_blank">
+                            Модул 3 - Тема 3.2
+                        </a>
+                    </td>
+                    <td>1.28 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema3.3.zip" target="_blank">
+                            Модул 3 - Тема 3.3
+                        </a>
+                    </td>
+                    <td>3.61 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema3.4.zip" target="_blank">
+                            Модул 3 - Тема 3.4
+                        </a>
+                    </td>
+                    <td>9.79 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema4.1.zip" target="_blank">
+                            Модул 4 - Тема 4.1
+                        </a>
+                    </td>
+                    <td>1.74 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema4.2.zip" target="_blank">
+                            Модул 4 - Тема 4.2
+                        </a>
+                    </td>
+                    <td>1.65 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema4.3.zip" target="_blank">
+                            Модул 4 - Тема 4.3
+                        </a>
+                    </td>
+                    <td>876.54 KB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema4.4.zip" target="_blank">
+                            Модул 4 - Тема 4.4
+                        </a>
+                    </td>
+                    <td>1.55 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema5.1.zip" target="_blank">
+                            Модул 5 - Тема 5.1
+                        </a>
+                    </td>
+                    <td>2.88 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema5.2.zip" target="_blank">
+                            Модул 5 - Тема 5.2
+                        </a>
+                    </td>
+                    <td>1.77 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema5.3.zip" target="_blank">
+                            Модул 5 - Тема 5.3
+                        </a>
+                    </td>
+                    <td>1.24 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva3-4tema5.4.zip" target="_blank">
+                            Модул 5 - Тема 5.4
+                        </a>
+                    </td>
+                    <td>2.55 MB</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal" id="materialsModal3" tabindex="-1" aria-labelledby="materialsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="materialsModalLabel">Учебни материали</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-success">
+                <tr>
+                    <th>Прикачен файл</th>
+                    <th>Размер</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema1.1.rar" target="_blank">
+                            Нива_5-6_тема_1.1
+                        </a>
+                    </td>
+                    <td>1.19 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema1.2.rar" target="_blank">
+                            Нива_5-6_тема_1.2
+                        </a>
+                    </td>
+                    <td>12.28 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema1.3.rar" target="_blank">
+                            Нива_5-6_тема_1.3
+                        </a>
+                    </td>
+                    <td>18.54 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema2.1.rar" target="_blank">
+                            Нива_5-6_тема_2.1
+                        </a>
+                    </td>
+                    <td>8.74 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema2.2.rar" target="_blank">
+                            Нива_5-6_тема_2.2
+                        </a>
+                    </td>
+                    <td>4.61 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema2.3.rar" target="_blank">
+                            Нива_5-6_Тема_2.3
+                        </a>
+                    </td>
+                    <td>13.87 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema2.4.rar" target="_blank">
+                            Нива_5-6_тема_2.4
+                        </a>
+                    </td>
+                    <td>5.28 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema2.5.rar" target="_blank">
+                            Нива_5-6_тема_2.5
+                        </a>
+                    </td>
+                    <td>4.19 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema2.6.rar" target="_blank">
+                            Нива_5-6_тема_2.6
+                        </a>
+                    </td>
+                    <td>4.19 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema3.1.rar" target="_blank">
+                            Нива_5-6_тема_3.1
+                        </a>
+                    </td>
+                    <td>17.58 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema3.2.rar" target="_blank">
+                            Нива_5-6_тема_3.2
+                        </a>
+                    </td>
+                    <td>19.96 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema3.3.rar" target="_blank">
+                            Нива_5-6_тема_3.3
+                        </a>
+                    </td>
+                    <td>7.34 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema3.4.rar" target="_blank">
+                            Нива_5-6_тема_3.4
+                        </a>
+                    </td>
+                    <td>7.87 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema4.1.rar" target="_blank">
+                            Нива_5-6_Тема_4.1
+                        </a>
+                    </td>
+                    <td>2.97 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema4.2.rar" target="_blank">
+                            Нива_5-6_Тема_4.2
+                        </a>
+                    </td>
+                    <td>2.23 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema4.3.rar" target="_blank">
+                            Нива_5-6_Тема_4.3
+                        </a>
+                    </td>
+                    <td>2.5 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema4.4.rar" target="_blank">
+                            Нива_5-6_Тема_4.4
+                        </a>
+                    </td>
+                    <td>1.96 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema5.1.rar" target="_blank">
+                            Нива_5-6_Тема_5.1
+                        </a>
+                    </td>
+                    <td>2.38 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema5.2.rar" target="_blank">
+                            Нива_5-6_Тема_5.2
+                        </a>
+                    </td>
+                    <td>4.33 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema5.3.rar" target="_blank">
+                            Нива_5-6_Тема_5.3
+                        </a>
+                    </td>
+                    <td>1.23 MB</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-archive me-2"></i>
+                        <a href="https://chrdri.net/sites/default/files/niva5-6tema5.4.rar" target="_blank">
+                            Нива_5-6_Тема_5.4
+                        </a>
+                    </td>
+                    <td>11.07 MB</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll('.tab-buttons button');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            contents.forEach(c => c.style.display = 'none');
+            document.getElementById(tab.getAttribute('data-tab')).style.display = 'block';
+        });
+    });
+</script>
+
+</body>
+</html>
